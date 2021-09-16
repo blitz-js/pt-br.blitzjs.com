@@ -3,38 +3,38 @@ title: Tutorial
 sidebar_label: Tutorial
 ---
 
-In this tutorial, we’ll walk you through the creation of a basic voting
-application.
+Neste tutorial, vamos orientá-lo na criação de um aplicativo básico de
+votação.
 
-We’ll assume that you have [Blitz installed](./get-started) already. You
-can tell if Blitz is installed, and which version you have by running the
-following command in your terminal:
+Vamos assumir que você já tenha o [Blitz instalado](./get-started). Você
+pode saber se o Blitz está instalado e qual versão você possui executando
+o seguinte comando em seu terminal:
 
 ```sh
 blitz -v
 ```
 
-If Blitz is installed, you should see the version of your installation. If
-it isn’t, you’ll get an error saying something like “command not found:
-blitz”.
+Se o Blitz estiver instalado, você deverá ver a versão de sua instalação.
+Se não estiver, você receberá um erro dizendo algo como “command not
+found: blitz”.
 
-## Creating a new app {#creating-a-new-app}
+## Criando um novo app {#creating-a-new-app}
 
-From the command line, `cd` into the folder where you’d like to create
-your app, and then run the following command:
+Na linha de comando, vá para a pasta onde deseja criar seu aplicativo e
+execute o seguinte comando:
 
 ```sh
-blitz new my-blitz-app
+blitz new meu-app-blitz
 ```
 
-Blitz will create a `my-blitz-app` folder in your current folder. You will
-be prompted to pick a form library. For this tutorial, select the
-recommended library `React Final Form`.
+Blitz criará uma pasta `meu-app-blitz` em sua pasta atual. Você será
+solicitado a escolher uma biblioteca de formulários. Para este tutorial,
+selecione a biblioteca recomendada `React Final Form`.
 
-Let’s look at what `blitz new` created:
+Vejamos o que `blitz new` criou:
 
 ```
-my-blitz-app
+meu-app-blitz
 ├── app/
 │   ├── api/
 │   ├── auth/
@@ -97,76 +97,83 @@ my-blitz-app
 └── yarn.lock
 ```
 
-These files are:
+Esses arquivos são:
 
-- The `app/` folder is a container for most of your project. This is where
-  you’ll put any pages or API routes.
+- A pasta `app/` é um contêiner para a maior parte do seu projeto. É aqui
+  que você colocará todas as páginas ou rotas de API.
 
-- The `app/pages/` folder is the primary pages folder. If you've used
-  Next.js you'll immediately notice this is different. In Blitz, you can
-  have many `pages` folders and they will be merged together at build
-  time.
+- A pasta `app/pages/` é a principal pasta das páginas. Se você já usou
+  Next.js, notará essa diferença imediatamente. No Blitz, você pode ter
+  muitas pastas `pages` e elas serão mescladas no momento da construção
+  (build time).
 
-- The `app/core/` folder is the main place to put components, hooks, etc
-  that are used throughout your app.
+- A pasta `app/core/` é o principal local para colocar componentes, hooks,
+  etc, que são usados em todo o seu app.
 
-- `db/` is where your database configuration goes. If you’re writing
-  models or checking migrations, this is where to go.
+- `db/` é onde vai a configuração do seu banco de dados. Se você estiver
+  escrevendo modelos ou verificando migrações (migrations), é aqui que
+  você deve verificar.
+
+- `public/` é a pasta onde você colocará quaisquer ativos estáticos. Se
+  você tiver imagens, arquivos ou vídeos que deseja usar em seu app, é
+  aqui que você deve colocá-los.
 
 - `public/` is a folder where you will put any static assets. If you have
   images, files, or videos which you want to use in your app, this is
   where to put them.
 
-- `.babelrc.js`, `.env`, etc. ("dotfiles") are configuration files for
-  various bits of JavaScript tooling.
+- `.babelrc.js`, `.env`, etc. ("dotfiles") são arquivos de configuração
+  para várias ferramentas JavaScript.
 
-- `blitz.config.js` is for advanced custom configuration of Blitz. It's
-  the same format as `next.config.js`.
+- `blitz.config.js` é para configuração personalizada avançada do Blitz.
+  Utiliza o mesmo formato que o `next.config.js`.
 
-- `tsconfig.json` is our recommended setup for TypeScript.
+- `tsconfig.json` é nossa configuração recomendada para TypeScript.
 
-## The development server {#the-development-server}
+## O servidor de desenvolvimento {#the-development-server}
 
-Now make sure you are in the `my-blitz-app` folder, if you haven’t
-already, and run the following command:
+Agora certifique-se de que está na pasta `meu-app-blitz` e execute o
+seguinte comando:
 
 ```sh
 blitz dev
 ```
 
-You’ll see the following output on the command line:
+Você verá a seguinte saída na linha de comando:
 
 ```sh
 ✔ Compiled
-Loaded env from /private/tmp/my-blitz-app/.env
+Loaded env from /private/tmp/meu-app-blitz/.env
 warn  - You have enabled experimental feature(s).
 warn  - Experimental features are not covered by semver, and may cause unexpected or broken application behavior. Use them at your own risk.
 
 ready - started server on 0.0.0.0:3000, url: http://localhost:3000
-info  - Using external babel configuration from /my-blitz-app/babel.config.js
+info  - Using external babel configuration from /meu-app-blitz/babel.config.js
 event - compiled successfully
 ```
 
-Now that the server’s running, visit
-[localhost:3000](http://localhost:3000) with your web browser. You’ll see
-a welcome page, with the Blitz logo. It worked!
+Agora que o servidor está em execução, visite
+[localhost:3000](http://localhost:3000) com seu navegador. Você verá uma
+página de boas-vindas, com o logotipo do Blitz. It worked!
 
-## Sign up as a user {#sign-up-as-a-user}
+## Cadastre-se como um usuário {#sign-up-as-a-user}
 
-Blitz apps are created with user signup and login already set up! So let's
-try it. Click on the **Sign Up** button. Enter any email and password and
-click **Create Account**. Then you'll be redirected back to the home page
-where you can see your user `id` and `role`.
+Os apps Blitz são criados com o cadastro e login de usuário já
+configurados! Então, vamos testar. Clique no botão **Sign Up**
+(Cadastrar-se). Digite qualquer e-mail e senha e clique em **Create
+Account** (Criar Conta). Em seguida, você será redirecionado de volta para
+a página inicial, onde pode ver seu usuário `id` e `role`.
 
-If you want, you can also try logging out and logging back in. Or click
-**Forgot your password?** on the login page to try that flow.
+Se quiser, você também pode tentar sair e fazer login novamente. Ou clique
+em **Forgot your password?** (Esqueceu sua senha?) na página de login para
+testar esse fluxo.
 
-## Write your first page {#write-your-first-page}
+## Escreva sua primeira página {#write-your-first-page}
 
-Next let's create your first page.
+Em seguida, vamos criar sua primeira página.
 
-Open the file `app/pages/index.tsx` and replace the contents of the `Home`
-component with this:
+Abra o arquivo `app/pages/index.tsx` e substitua o conteúdo do componente
+`Home` por:
 
 ```tsx
 //...
@@ -186,21 +193,21 @@ const Home: BlitzPage = () => {
 //...
 ```
 
-Save the file and you should see the page update in your browser. You can
-customize this as much as you want. When you’re ready, move on to the next
-section.
+Salve o arquivo e você verá a atualização da página em seu navegador. Você
+pode personalizar isso o quanto quiser. Quando estiver pronto, vá para a
+próxima seção.
 
-## Database setup {#database-setup}
+## Configuração de banco de dados {#database-setup}
 
-Good news, an SQLite database was already set up for you! You can run
-`blitz prisma studio` in the terminal to open a web interface where you
-can see the data in your database.
+Boas notícias, um banco de dados SQLite já foi configurado para você! Você
+pode executar o `blitz prisma studio` no terminal para abrir uma interface
+web onde você pode ver os dados de seu banco de dados.
 
-Note that when starting your first real project, you may want to use a
-more scalable database like PostgreSQL, to avoid the pains of switching
-your database down the road. For more information, see
-[Database overview](database-overview). For now, we will continue with the
-default SQLite database.
+Observe que ao iniciar seu primeiro projeto real, você pode querer usar um
+banco de dados mais escalável como o PostgreSQL, para evitar o incômodo de
+alterar seu banco de dados ao longo do caminho. Para obter mais
+informações, consulte [Visão geral do banco de dados](database-overview).
+Por enquanto, continuaremos com o banco de dados padrão SQLite.
 
 ## Scaffolding code for our models {#scaffolding-code-for-our-models}
 
