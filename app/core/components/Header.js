@@ -89,15 +89,15 @@ const Header = ({
         target="_blank"
         className="underline"
       >
-        Announcing Flightcontrol
+        Anunciando Flightcontrol
       </a>{" "}
-      - Optimized Deployment for Fullstack Blitz.js and Next.js 🚀
+      - Deploy otimizado para apps Fullstack Blitz.js e Next.js 🚀
     </div>
   )
 
   const menuLinks = [
     {
-      name: "Documentation",
+      name: "Documentação",
       href: isDesktop ? "/docs/get-started" : "/docs",
     },
     {
@@ -105,7 +105,7 @@ const Header = ({
       href: "/showcase",
     },
     {name: "Releases", href: "https://github.com/blitz-js/blitz/releases"},
-    {name: "Swag", href: "https://store.blitzjs.com"},
+    {name: "Brindes", href: "https://store.blitzjs.com"},
     {name: "Flightcontrol Cloud", href: "https://flightcontrol.dev"},
   ]
 
@@ -147,7 +147,7 @@ const Header = ({
               rel="noopener noreferrer"
               href="https://github.com/sponsors/blitz-js"
             >
-              <FaHeart className="inline mr-1 align-text-top" /> Sponsor
+              <FaHeart className="inline mr-1 align-text-top" /> Patrocinador
               <FiArrowUpRight size="0.70rem" className="opacity-50 absolute top-2 right-0" />
             </NavLink>
           </div>
