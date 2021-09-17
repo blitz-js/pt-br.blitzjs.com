@@ -38,7 +38,7 @@ export function Footer({className, hasDarkMode}) {
                   <a>Todas as Documentações</a>
                 </Link>
                 <Link href="/docs/get-started">
-                  <a>Iniciar Agora</a>
+                  <a>Introdução</a>
                 </Link>
                 <Link href="/docs/contributing">
                   <a>Como Contribuir</a>
