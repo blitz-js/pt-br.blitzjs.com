@@ -115,12 +115,8 @@ Esses arquivos são:
   você deve verificar.
 
 - `public/` é a pasta onde você colocará quaisquer ativos estáticos. Se
-  você tiver imagens, arquivos ou vídeos que deseja usar em seu app, é
-  aqui que você deve colocá-los.
-
-- `public/` is a folder where you will put any static assets. If you have
-  images, files, or videos which you want to use in your app, this is
-  where to put them.
+  você tiver imagens, arquivos ou vídeos que deseja usar em seu app, aqui
+  é onde você deve colocá-los.
 
 - `.babelrc.js`, `.env`, etc. ("dotfiles") são arquivos de configuração
   para várias ferramentas JavaScript.
@@ -287,10 +283,6 @@ blitz generate resource choice text votes:int:default=0 belongsTo:question
 
 Se você receber um erro, execute `blitz prisma format`.
 
-Note that this doesn't require a database migration because we haven't
-added the `Choice` field to the `Question` model yet. So we are choosing
-`false` when prompted to run the migration:
-
 Note que isso não requer uma migração de banco de dados porque ainda não
 adicionamos o campo `Choice` ao modelo `Question`. Portanto, estamos
 escolhendo `false` quando solicitado para executar a migração:
@@ -316,8 +308,6 @@ CREATE    app/choices/mutations/updateChoice.ts
 
 ? Run 'prisma migrate dev' to update your database? (Y/n) › false
 ```
-
-#### Lastly let's update the `Question` model to have a relationship back to `Choice`.
 
 #### Por último, vamos atualizar o modelo `Question` para ter um relacionamento de volta com `Choice`.
 
@@ -359,13 +349,13 @@ Your database is now in sync with your schema.
 ```
 
 Agora nosso banco de dados está pronto e um cliente Prisma também foi
-gerado. Vamos continuar para brincarmos o cliente Prisma!
+gerado. Vamos continuar para testarmos o cliente Prisma!
 
-## Brincando com o cliente de banco de dados Prisma {#playing-with-the-prisma-database-client}
+## Testando o cliente de banco de dados Prisma {#playing-with-the-prisma-database-client}
 
-Agora, vamos para o shell interativo do Blitz e brincar com o cliente de
-banco de dados Prisma que o Blitz oferece. Para iniciar o console Blitz,
-use este comando:
+Agora, vamos para o shell interativo do Blitz e testar o cliente de banco
+de dados Prisma que o Blitz oferece. Para iniciar o console Blitz, use
+este comando:
 
 ```sh
 blitz console
