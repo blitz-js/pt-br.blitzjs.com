@@ -634,11 +634,11 @@ estiver, execute `blitz dev` em seu terminal e visite
 
 ## Adicionando opções ao formulário da pergunta {#adding-choices-to-the-question-form}
 
-You’re doing great so far! The next thing we’ll do is add choices to our
-question form. Open `app/questions/components/QuestionForm.tsx` in your
-editor.
+Você está indo muito bem até agora! A próxima coisa que faremos é
+adicionar opções ao nosso formulário de perguntas. Abra
+`app/questions/components/QuestionForm.tsx` em seu editor.
 
-Add three more `<LabeledTextField>` components as choices.
+Adicione mais três componentes `<LabeledTextField>` como opções.
 
 ```diff
 export function QuestionForm<S extends z.ZodType<any, any>>(
@@ -647,16 +647,16 @@ export function QuestionForm<S extends z.ZodType<any, any>>(
   return (
     <Form<S> {...props}>
       <LabeledTextField name="text" label="Texto" placeholder="Text" />
-+     <LabeledTextField name="choices.0.text" label="Choice 1" />
-+     <LabeledTextField name="choices.1.text" label="Choice 2" />
-+     <LabeledTextField name="choices.2.text" label="Choice 3" />
++     <LabeledTextField name="choices.0.text" label="Opção 1" />
++     <LabeledTextField name="choices.1.text" label="Opção 2" />
++     <LabeledTextField name="choices.2.text" label="Opção 3" />
     </Form>
   )
 }
 ```
 
-Next open `app/pages/questions/new.tsx` and set `initialValues` to be as
-follows:
+Em seguida, abra `app/pages/questions/new.tsx` e defina o `initialValues`
+como a seguir:
 
 ```diff
       <QuestionForm
@@ -677,10 +677,10 @@ follows:
       />
 ```
 
-Then open `app/questions/mutations/createQuestion.ts` and update the zod
-schema so that the choice data is accepted in the mutation. And we also
-need to update the `db.question.create` call so that the choices will also
-be created.
+Em seguida, abra `app/questions/mutations/createQuestion.ts` e atualize o
+esquema do zod para que os dados das opções sejam aceitos na mutation. E
+também precisamos atualizar a chamada `db.question.create` para que as
+opções também sejam criadas.
 
 ```diff
 // app/questions/mutations/createQuestion.ts
@@ -709,10 +709,10 @@ export default resolver.pipe(
 )
 ```
 
-#### Try it out
+#### Experimente
 
-Now you can go to `localhost:3000/questions/new` and create a new question
-with choices!
+Agora você pode ir para `localhost:3000/questions/new` e criar uma nova
+questão com opções!
 
 ## Listing choices {#listing-choices}
 
