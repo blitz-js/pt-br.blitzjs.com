@@ -268,8 +268,8 @@ Your database is now in sync with your schema.
 ✔ Generated Prisma Client (2.27.0) to ./node_modules/@prisma/client in 187ms
 ```
 
-O comando `generate` do tipo `all` gera um model (modelo), queries
-(consultas), mutations (mutações) e arquivos de página. Veja a página
+O comando `generate` do tipo `all` gera um model (modelo), queries,
+mutations e arquivos de página. Veja a página
 [Blitz generate](./cli-generate) para ver a lista de opções disponíveis.
 
 #### A seguir, geraremos o modelo `Choice` com suas queries e mutations correspondentes.
@@ -421,14 +421,14 @@ No momento, o conteúdo gerado da página não usa os atributos do modelo
 real que você definiu durante a geração. Irá usar em breve, mas enquanto
 isso, vamos corrigir as páginas geradas.
 
-### Question pages {#question-pages}
+### Páginas das Perguntas {#question-pages}
 
 [//]:
   #
   "Remove the following section once `generate` uses actual model attributes"
 
-Jump over to `app/pages/questions/index.tsx`. Notice that a
-`QuestionsList` component has been generated for you:
+Vá para `app/pages/questions/index.tsx`. Observe que um componente
+`QuestionsList` foi gerado para você:
 
 ```tsx
 // app/pages/questions/index.tsx
@@ -467,22 +467,22 @@ export const QuestionsList = () => {
       </ul>
 
       <button disabled={page === 0} onClick={goToPreviousPage}>
-        Previous
+        Anterior
       </button>
       <button
         disabled={isPreviousData || !hasMore}
         onClick={goToNextPage}
       >
-        Next
+        Próximo
       </button>
     </div>
   )
 }
 ```
 
-This won’t work though! Remember that the `Question` model we created
-above doesn’t have any `name` field. To fix this, replace `question.name`
-with `question.text`:
+Mas isso não vai funcionar! Lembre-se de que o modelo `Question` que
+criamos acima não possui nenhum campo `name`. Para corrigir isso,
+substitua `question.name` por `question.text`:
 
 ```diff
 // app/pages/questions/index.tsx
@@ -520,19 +520,19 @@ export const QuestionsList = () => {
       </ul>
 
       <button disabled={page === 0} onClick={goToPreviousPage}>
-        Previous
+        Anterior
       </button>
       <button disabled={isPreviousData || !hasMore} onClick={goToNextPage}>
-        Next
+        Próximo
       </button>
     </div>
   )
 }
 ```
 
-Next, let’s apply a similar fix to
-`app/questions/components/QuestionForm.tsx`. In the form submission,
-replace the `LabeledTextField` `name` to be `"text"`
+A seguir, vamos aplicar uma correção semelhante a
+`app/questions/components/QuestionForm.tsx`. No envio do formulário,
+substitua o `LabeledTextField` `name` por `"text"`
 
 ```diff
 export function QuestionForm<S extends z.ZodType<any, any>>(
@@ -541,7 +541,7 @@ export function QuestionForm<S extends z.ZodType<any, any>>(
   return (
     <Form<S> {...props}>
 -     <LabeledTextField name="name" label="Name" placeholder="Name" />
-+     <LabeledTextField name="text" label="Text" placeholder="Text" />
++     <LabeledTextField name="text" label="Texto" placeholder="Texto" />
     </Form>
   )
 }
@@ -549,8 +549,9 @@ export function QuestionForm<S extends z.ZodType<any, any>>(
 
 ### `createQuestion` mutation {#create-question-mutation}
 
-In `app/questions/mutations/createQuestion.ts`, we need to update the
-`CreateQuestion` zod validation schema to use `text` instead of `name`.
+Em `app/questions/mutations/createQuestion.ts`, precisamos atualizar o
+esquema de validação do zod `CreateQuestion` para usar `text` em vez de
+`name`.
 
 ```diff
 // app/questions/mutations/createQuestion.ts
@@ -566,8 +567,9 @@ const CreateQuestion = z
 
 ### `updateQuestion` mutation {#update-question-mutation}
 
-In `app/questions/mutations/updateQuestion.ts`, we need to update the
-`UpdateQuestion` zod validation schema to use `text` instead of `name`.
+Em `app/questions/mutations/updateQuestion.ts`, precisamos atualizar o
+esquema de validação do zod `UpdateQuestion` para usar `text` em vez de
+`name`.
 
 ```diff
 // app/questions/mutations/updateQuestion.ts
@@ -593,11 +595,18 @@ deleting a `Question`. We need to temporarily augment the generated
 `app/questions/mutations/deleteQuestion.ts` in your text editor and add
 the following to the top of the function body:
 
+O Prisma ainda não suporta "cascading deletes". No contexto deste
+tutorial, isso significa que atualmente ele não exclui os dados de
+`Choice` ao excluir uma `Question`. Precisamos alterar temporariamente a
+mutation `deleteQuestion` gerada para fazer isso manualmente. Abra
+`app/questions/mutations/deleteQuestion.ts` em seu editor de texto e
+adicione o seguinte ao topo do corpo da função:
+
 ```ts
 await db.choice.deleteMany({ where: { questionId: id } })
 ```
 
-The end result should be as such:
+O resultado final deve ser o seguinte:
 
 ```diff
 // app/questions/mutations/deleteQuestion.ts
@@ -614,16 +623,16 @@ export default resolver.pipe(
 )
 ```
 
-This mutation will now delete the choices associated with the question
-prior to deleting the question itself.
+Esta mutation agora excluirá as opções associadas à pergunta antes de
+excluir a própria pergunta.
 
-#### Now try creating, updating, and deleting questions
+#### Agora tente criar, atualizar e excluir perguntas
 
-Great! Now make sure your app is running. If it isn’t, run `blitz dev` in
-your terminal, and visit `localhost:3000/questions`. Try creating
-questions, editing, and deleting them.
+Excelente! Agora certifique-se de que seu app esteja em execução. Se não
+estiver, execute `blitz dev` em seu terminal e visite
+`localhost:3000/questions`. Tente criar perguntas, editar e excluí-las.
 
-## Adding choices to the question form {#adding-choices-to-the-question-form}
+## Adicionando opções ao formulário da pergunta {#adding-choices-to-the-question-form}
 
 You’re doing great so far! The next thing we’ll do is add choices to our
 question form. Open `app/questions/components/QuestionForm.tsx` in your
@@ -637,7 +646,7 @@ export function QuestionForm<S extends z.ZodType<any, any>>(
 ) {
   return (
     <Form<S> {...props}>
-      <LabeledTextField name="text" label="Text" placeholder="Text" />
+      <LabeledTextField name="text" label="Texto" placeholder="Text" />
 +     <LabeledTextField name="choices.0.text" label="Choice 1" />
 +     <LabeledTextField name="choices.1.text" label="Choice 2" />
 +     <LabeledTextField name="choices.2.text" label="Choice 3" />
