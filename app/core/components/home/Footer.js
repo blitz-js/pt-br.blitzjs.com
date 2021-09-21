@@ -84,7 +84,7 @@ export function Footer({className, hasDarkMode}) {
                 </Link>
                 <Link href="https://store.blitzjs.com">
                   <a target="_blank" rel="noopener noreferrer">
-                    Brindes
+                    Loja
                   </a>
                 </Link>
               </LinkList>
